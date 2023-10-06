@@ -1,37 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+  <div class="main-container">
+      <header id="headerPage" aria-hidden="false">
+          <a href="index.html" aria-label="Fisheye Home page"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" ></a>
+      </header>
+
+      <main id="main" aria-hidden="false">
+          <section class="photograph-header">
+          </section>
+
+          <section class="filter-medias">
+
+              <div class="sorting-list">
+                  <h2 id="sort-title" class="sort-title">Trier par</h2>
+                  <div role="menu" class="dropdown">
+                      <button
+                              class="dropdown-toggle close drop-btn"
+                              type="button"
+                      >
+                          <span id="dropdown-title">Popularité</span>
+                          <img src="assets/icons/dropdown.svg" alt="" class="dropdown-arrow" aria-hidden="true" >
+                      </button>
+                      <ul id="sort-dropdown" class="dropdown-menu button-group" aria-labelledby="sort-title">
+                          <li class="li-dropdown">
+                              <button
+                                      id="sort-by-popularity"
+                                      class="sort-button is-checked"
+                                      type="button"
+                                      data-sort-value="popularity"
+                                      onclick="sort('Popularité')"
+                              >
+                                  <span id="sort-popularity" class="sort-name">Popularité</span>
+                              </button>
+                          </li>
+                          <li class="li-dropdown">
+                              <button
+                                      id="sort-by-name"
+                                      class="sort-button button"
+                                      type="button"
+                                      data-sort-value="name"
+                                      onclick="sort('Titre')"
+                              >
+                                  <span id="sort-name" class="sort-name">Titre</span>
+                              </button>
+                          </li>
+                          <li class="li-dropdown">
+                              <button
+                                      id="sort-by-date"
+                                      role="menuitem"
+                                      type="button"
+                                      class="sort-button button"
+                                      data-sort-value="date"
+                                      onclick="sort('Date')"
+                              >
+                                  <span id="sort-date" class="sort-name">Date</span>
+                              </button>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+
+          </section>
+
+          <section class="photograph-media">
+
+          </section>
+
+          <aside class="like_price">
+              <p class="likes"> <span id="numberOfLikes"></span> <i class="fa fa-heart"></i></p>
+              <p class="price"></p>
+          </aside>
+      </main>
+  </div>
+
+  <div id="contact_modal" role="dialog" aria-hidden="true" aria-describedby="Contact">
+      <div class="modal">
+          <header class="contactHeader">
+              <h1 id="Contact">Contactez-moi <br> <span id="photographerNameForModal"></span></h1>
+              <button aria-label="Close contact form" id="modalCloseButton" onclick="closeModal()"><img src="assets/icons/close.svg" alt=""></button>
+          </header>
+          <form class="contactForm" method="get" action="photographer.html" >
+              <div class="formData firstname" data-error="Veuillez entrer 2 caractères ou plus, sans chiffre.">
+                  <label for="firstname">Prénom</label>
+                  <input class="text-control" aria-label="First name" type="text" id="firstname" name="firstname">
+              </div>
+              <div class="formData lastname" data-error="Veuillez entrer 2 caractères ou plus, sans chiffre.">
+                  <label for="lastname">Nom</label>
+                  <input class="text-control" aria-label="Last name" type="text" id="lastname" name="lastname">
+              </div>
+              <div class="formData email" data-error="Veuillez entrer une adresse mail valide.">
+                  <label for="email">Email</label>
+                  <input class="text-control" aria-label="Email" type="email" id="email" name="email">
+              </div>
+              <div class="formData message" data-error="Veuillez entrer un message...">
+                  <label for="message">Votre message</label>
+                  <textarea class="text-control" aria-label="Your message" id="message" name="message"></textarea>
+              </div>
+
+          </form>
+          <div class="buttonBox">
+              <button aria-label="Send" type="submit" class="contact_button" onclick="sendInfo()">Envoyer</button>
+          </div>
+          <div class="confirmationMessage">
+              <p>Merci ! <br> Votre message a bien été envoyé.</p>
+          </div>
       </div>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+  </div>
+
+  <div id="box_carrousel" role="dialog" aria-hidden="true" aria-describedby="Carrousel" aria-label="Image closeup view">
+      <div class="carrousel">
+          <header>
+              <h1 class="sr-only">Carrousel</h1>
+              <button aria-label="Close dialog" id="carrouselCloseButton" onclick="closeCarrousel()"><img src="assets/icons/closeCarrousel.svg" alt=""></button>
+          </header>
+
+          <div id="Carrousel" class="carrouselContent">
+              <button class="controls prev-image">
+            <span>
+              <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </span>
+                  <p class="sr-only">Previous image</p>
+              </button>
+
+              <div id="divMedia">
+              </div>
+
+              <button class="controls next-image">
+            <span>
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </span>
+                  <p class="sr-only">Next image</p>
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <script src="scripts/factories/photographer.js"></script>
+  <script src="scripts/pages/photographer.js"></script>
+  <script src="scripts/factories/media.js"></script>
+  <script src="scripts/utils/sort.js"></script>
+  <script src="scripts/utils/carrousel.js"></script>
+  <script src="scripts/utils/form.js"></script>
   </body>
 </html>
