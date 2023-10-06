@@ -47,7 +47,7 @@ function sendInfo(){
 
     let verifyFirst = validateAttribut(firstname.value.length <= 2 || firstname.value.match(/^\s*$/g) || firstname.value.match('[0-9]'), document.querySelector('.formData.firstname'));
     let verifyLast = validateAttribut(lastname.value.length <= 2 || lastname.value.match(/^\s*$/g) || lastname.value.match('[0-9]'), document.querySelector('.formData.lastname'));
-    let verifyEmail = validateAttribut(!email.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) || email.value.match(/^\s*$/g), document.querySelector('.formData.email'));
+    let verifyEmail = validateAttribut(!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) || email.value.match(/^\s*$/g), document.querySelector('.formData.email'));
     let verifyMessage = validateAttribut(message.value.length <= 2 || message.value.match(/^\s*$/g), document.querySelector('.formData.message'))
 
     let verifyAll = verifyFirst && verifyLast && verifyEmail && verifyMessage;
