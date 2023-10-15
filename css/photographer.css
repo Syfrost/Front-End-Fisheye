@@ -253,6 +253,7 @@
     left: 0;
     z-index: 10;
     background-color: rgba(202, 202, 202, 0.4);
+    box-sizing: border-box;
 
     overflow: auto;
     padding: 1.75rem;
@@ -261,7 +262,7 @@
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 650px;
     height: 90%;
     display: flex;
     flex-direction: column;
@@ -291,7 +292,7 @@
 }
 
 .modal header h1 {
-    font-size: 4rem;
+    font-size: 3.52rem;
     font-weight: normal;
     margin: 0;
     padding: 0;
@@ -307,7 +308,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 2.25rem;
+    font-size: 1.9rem;
 }
 
 form div {
