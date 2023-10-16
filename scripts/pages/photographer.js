@@ -50,7 +50,7 @@ function likeDislike() {
 }
 
 async function getPhotographersInfo(photographerId) {
-    const response = await fetch('data/photographers.json');
+    const response = await fetch('https://syfrost.github.io/Front-End-Fisheye/data/photographers.json');
     const data = await response.json();
     let allDataPhotographers = data.photographers;
     let allDataMedia = data.media;
