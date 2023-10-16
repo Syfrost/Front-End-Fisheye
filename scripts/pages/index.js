@@ -26,7 +26,7 @@
     //         photographers: [...photographers, ...photographers, ...photographers]})
     // }
     async function getPhotographers() {
-        const response = await fetch('data/photographers.json');
+        const response = await fetch('https://syfrost.github.io/Front-End-Fisheye/data/photographers.json');
         const data = await response.json();
         let photographers = data.photographers;
         console.log(photographers);
